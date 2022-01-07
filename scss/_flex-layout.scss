@@ -1,0 +1,27 @@
+$flex-points: 10, 20, 30, 33, 40, 50, 60, 66, 70, 80, 90, 100;
+
+.flex-form{
+  .nf-form-content{
+    nf-fields-wrap{
+      display:flex;
+      flex-flow:row wrap;
+      nf-field{
+        flex:1 100%;
+        padding:0 5px;
+      }
+      @each $point in $flex-points{
+        .flex-#{$point}{
+          flex: #{$point / 100} #{$point + '%'};
+        }
+      }
+    }
+  }
+}
+
+@media (max-width:979px){
+  .flex-form{
+    nf-field{
+      flex:1 100% !important;
+    }
+  }
+}

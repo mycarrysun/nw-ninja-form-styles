@@ -1,0 +1,15 @@
+// VARIABLES
+
+$nw-red: hsl(350,91%,43%);  // #CF0A2C rgb(207,10,44)
+$nw-red-hover: hsl(350,91%,35%);
+$nw-grey: #aaa;
+$nw-light-grey: #aeaeae;
+$navbar-height: 70px;
+$body-font:"Lato",sans-serif;
+$primary-color:$nw-red;
+
+$irregular-inputs: 'checkbox', 'radio', 'button', 'color', 'hidden', 'file', 'range', 'reset', 'submit';
+$not-irregular: '';
+@each $input in $irregular-inputs{
+  $not-irregular: $not-irregular + ':not([type=#{$input}])';
+}

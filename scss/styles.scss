@@ -1,0 +1,195 @@
+@import "variables";
+@import "flex-layout";
+
+@mixin material_styles{
+  padding:8px;
+  margin-bottom:0;
+  border: solid 0 #fff;
+  border-bottom-width: 1px;
+  border-radius: 0;
+  box-shadow:none;
+  background: transparent;
+  font-size: 20px;
+  color: #fff;
+  font-weight: 300;
+  transition: all 0.25s ease-in-out;
+  &:focus{
+    border-color:#fff;
+    outline:none;
+  }
+}
+
+@mixin material_label_styles{
+  input{
+    display:none;
+  }
+  label{
+    cursor:pointer;
+    padding-left:1.5em;
+    &:before{
+      content:" ";
+      cursor:pointer;
+      height:1em;
+      width:1em;
+      position: absolute;
+      left:0;
+      transform:translateY(0.4em);
+      border: 2px solid rgba(255,255,255,0.5);
+      transition:all 0.25s ease-in-out;
+    }
+  }
+}
+
+@mixin checkbox_label_styles{
+  label{
+    &.nf-checked-label{
+      &:before{
+        border-color:$primary-color;
+        width:0.65em;
+        border-top-color:transparent;
+        border-left-color:transparent;
+        transform: rotate(45deg) translate(0.3em);
+      }
+    }
+  }
+}
+
+@mixin radio_label_styles{
+  label{
+    &:before{
+      border-radius:50%;
+    }
+    &.nf-checked-label{
+      &:before{
+        border-color:$primary-color;
+        background:$primary-color;
+      }
+    }
+  }
+}
+
+// FORM INPUTS
+.nw-form{
+  hr{
+    border-color:#ccc;
+  }
+  .md-line{
+    height:3px;
+    width:0;
+    background:transparent;
+    display:inline-block;
+    position:absolute;
+    left:0;
+    bottom:0;
+    transition:all 0.25s ease-in-out;
+  }
+  .textarea-wrap{
+    .md-line{
+      bottom:9px;
+    }
+  }
+  .md-focus{
+    .md-line{
+      background:$nw-red;
+      width:100%;
+    }
+  }
+  input{
+    &#{$not-irregular}{
+      @include material_styles;
+    }
+  }
+  select,
+  textarea{
+    @include material_styles;
+  }
+  .list-checkbox-wrap,
+  .list-radio-wrap{
+    .nf-field-element{
+      @include material_label_styles;
+    }
+  }
+  .list-checkbox-wrap{
+    .nf-field-element{
+      @include checkbox_label_styles;
+    }
+  }
+  .list-radio-wrap{
+    .nf-field-element{
+      @include radio_label_styles;
+    }
+  }
+  .checkbox-wrap{
+    .nf-field-label{
+      padding-left:0;
+    }
+    .nf-field-element{
+      position:absolute;
+    }
+    @include material_label_styles;
+    @include checkbox_label_styles;
+  }
+  .field-wrap{
+    &:not(.checkbox-wrap):not(.list-radio-wrap):not(.list-checkbox-wrap){
+      .nf-field-label{
+        label{
+          font-weight:300;
+          position:absolute;
+          left:10px;
+          top:0;
+          transition: all 0.25s ease-in-out;
+        }
+      }
+      &.md-focus,
+      &.md-has-value,
+      &.number-wrap,
+      &.list-select-wrap,
+      &.date-wrap{
+        label{
+          transform:translate(-11.5%, -75%) scale(0.75);
+          left:0;
+        }
+      }
+    }
+  }
+  .nf-field-element{
+    textarea{
+      height:unset;
+    }
+    select{
+      option{
+        color:#333;
+      }
+    }
+  }
+  .nf-field-description{
+    order:20;
+    font-size:80%;
+    opacity:0.6;
+  }
+  .nf-error{
+    .ninja-forms-field{
+      border-width:0;
+      border-bottom-width:1px;
+      border-color:unset;
+    }
+  }
+  .nf-after-field{
+    height:30px;
+    .nf-error-msg{
+      font-size:80%;
+      position:absolute;
+      left:50%;
+      transform:translateX(-50%);
+    }
+  }
+  .nf-form-errors{
+    .nf-error-msg{
+      font-size:80%;
+    }
+  }
+  .nf-field-container{
+    margin-bottom:0;
+    margin-top:25px;
+  }
+}
